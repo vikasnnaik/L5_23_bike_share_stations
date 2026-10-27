@@ -1,7 +1,7 @@
 
 """Manage bike-share stations using an in-memory SQLite database."""
 
-import random
+import secrets
 import sqlite3
 
 conn = sqlite3.connect(":memory:")
@@ -18,8 +18,8 @@ def add_station(name, capacity, bikes, log=None):
         log = []
 
     conn.execute(
-        "INSERT INTO stations (name, capacity, bikes) VALUES "
-        "('" + name + "', " + str(capacity) + ", " + str(bikes) + ")"
+        "INSERT INTO stations (name, capacity, bikes) VALUES (?, ?, ?)",
+        (name, capacity, bikes),
     )
     log.append(name)
     return log
@@ -43,7 +43,7 @@ def rent_bike(station_id):
 
 def unlock_pin():
     """Generate a four-digit station unlock PIN."""
-    return random.randint(1000, 9999)
+    return secrets.randbelow(9000) + 1000
 
 
 def full_stations():
@@ -58,10 +58,11 @@ def reset_station(station_id):
     """Reset the bike count for a station."""
     try:
         conn.execute(
-            "UPDATE stations SET bikes = 0 WHERE id = ?", (station_id,)
+            "UPDATE stations SET bikes = 0 WHERE id = ?",
+            (station_id,),
         )
-    except Exception:
-        pass
+    except sqlite3.Error as error:
+        print(f"Unable to reset station {station_id}: {error}")
 
 
 def has_bikes(station_id):
