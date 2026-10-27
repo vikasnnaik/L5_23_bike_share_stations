@@ -1,0 +1,22 @@
+LAB 5: STATIC CODE ANALYSIS
+REFLECTION QUESTIONS AND ANSWERS
+
+Q1. What is static code analysis, and why is it important?
+
+Answer:
+Static code analysis examines source code without executing the program to identify potential errors, security vulnerabilities, and coding style violations. It helps improve code quality, readability, maintainability, and security.
+
+Q2. What are the purposes of Pylint, Bandit, and Flake8?
+
+Answer:
+Pylint checks code quality, programming errors, naming conventions, and documentation. Bandit identifies potential security vulnerabilities in Python code. Flake8 detects coding style violations, formatting issues, and certain programming errors.
+
+Q3. What issues were identified in the original program, and how were they fixed?
+
+Answer:
+The original bike-share station program contained missing docstrings, a mutable default argument, SQL query string concatenation, insecure random-number generation, broad exception handling, and formatting violations. These issues were addressed by improving documentation and formatting, using None for the default list argument, parameterized SQL queries, the secrets module for PIN generation, and specific SQLite exception handling.
+
+Q4. What did you learn from this lab?
+
+Answer:
+I learned how to use Pylint, Bandit, and Flake8 to improve Python code quality, security, and formatting. I also learned the importance of secure SQL queries, proper exception handling, and Git version control. After making the corrections, the program achieved a Pylint score of 10.00/10, Bandit reported no security issues, and Flake8 reported no violations.
