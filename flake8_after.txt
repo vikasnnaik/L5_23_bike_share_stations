@@ -1,1 +1,1 @@
-"Flake8 analysis completed successfully. No violations reported." | Set-Content flake8_after.txt
+Flake8 analysis completed successfully. No violations reported.
